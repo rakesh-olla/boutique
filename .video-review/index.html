@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reference video</title>
+  <style>
+    body { margin: 0; background: #0a0a0a; color: #fff; font-family: system-ui, sans-serif; }
+    .wrap { max-width: 480px; margin: 0 auto; padding: 12px; }
+    video { width: 100%; border-radius: 8px; background: #000; }
+    #t { margin-top: 8px; font-size: 13px; opacity: 0.85; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <video id="v" controls playsinline src="./ref.mp4"></video>
+    <p id="t">—</p>
+  </div>
+  <script>
+    const v = document.getElementById("v");
+    const t = document.getElementById("t");
+    const tick = () => {
+      t.textContent = `${v.currentTime.toFixed(1)}s / ${(v.duration || 0).toFixed(1)}s · ${v.videoWidth}×${v.videoHeight}`;
+    };
+    v.addEventListener("timeupdate", tick);
+    v.addEventListener("loadedmetadata", tick);
+  </script>
+</body>
+</html>

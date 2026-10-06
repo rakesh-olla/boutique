@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Frame at t</title>
+  <style>
+    body { margin: 0; background: #111; }
+    video { width: 100%; max-width: 420px; display: block; margin: 0 auto; }
+    p { color: #fff; text-align: center; font: 13px system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <video id="v" playsinline src="./ref.mp4"></video>
+  <p id="t"></p>
+  <script>
+    const v = document.getElementById("v");
+    const t = document.getElementById("t");
+    const sec = Number(new URLSearchParams(location.search).get("s") || 0);
+    v.addEventListener("loadeddata", () => {
+      v.currentTime = sec;
+      v.pause();
+      t.textContent = `frame @ ${sec}s`;
+    });
+  </script>
+</body>
+</html>

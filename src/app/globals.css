@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+/* Align Tailwind `dark:` with next-themes (`<html class="dark">`), not OS preference alone */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+  --background: #fafafa;
+  --foreground: #0a0a0a;
+  --card: #ffffff;
+  --card-border: #e5e5e5;
+  --muted: #737373;
+  --accent: #18181b;
+  /* Text / icons on top of --accent (primary buttons, active nav) */
+  --on-accent: #fafafa;
+  --sidebar: #f4f4f5;
+  --input-bg: #f4f4f5;
+  --danger: #dc2626;
+  --success: #16a34a;
+}
+
+.dark {
+  color-scheme: dark;
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+  --card: #171717;
+  --card-border: #262626;
+  --muted: #a3a3a3;
+  --accent: #fafafa;
+  --on-accent: #0a0a0a;
+  --sidebar: #141414;
+  --input-bg: #262626;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+@layer utilities {
+  .surface {
+    @apply rounded-xl border bg-[var(--card)] border-[var(--card-border)] shadow-sm;
+  }
+
+  /* Main content: smooth scroll on iOS, avoid scroll chaining to body */
+  .scroll-main {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+}

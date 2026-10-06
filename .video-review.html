@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Video review</title>
+  <style>
+    body { margin: 0; background: #111; color: #eee; font-family: system-ui, sans-serif; }
+    video { width: 100%; max-width: 420px; display: block; margin: 0 auto; }
+    #info { padding: 12px; text-align: center; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <video id="v" controls src="file:///E:/Downloads/WhatsApp%20Video%202026-05-19%20at%202.58.43%20PM.mp4"></video>
+  <div id="info">loading…</div>
+  <script>
+    const v = document.getElementById("v");
+    const info = document.getElementById("info");
+    v.addEventListener("loadedmetadata", () => {
+      info.textContent = `duration: ${v.duration.toFixed(1)}s · ${v.videoWidth}x${v.videoHeight}`;
+    });
+    v.addEventListener("error", () => {
+      info.textContent = "error: " + (v.error?.message || "cannot load");
+    });
+  </script>
+</body>
+</html>
